@@ -1,6 +1,6 @@
-﻿using BUTR.NexusMods.Core.Models;
+﻿using BUTR.NexusMods.Shared.Models;
 
-namespace BUTR.NexusMods.Core.Services
+namespace BUTR.NexusMods.Blazor.Core.Services
 {
     public interface IProfileProvider
     {

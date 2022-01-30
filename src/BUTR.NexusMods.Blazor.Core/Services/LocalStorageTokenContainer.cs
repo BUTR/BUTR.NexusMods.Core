@@ -1,6 +1,6 @@
 ﻿using Blazored.LocalStorage;
 
-namespace BUTR.NexusMods.Core.Services
+namespace BUTR.NexusMods.Blazor.Core.Services
 {
     public class LocalStorageTokenContainer : ITokenContainer
     {

@@ -2,7 +2,7 @@
 using System.Web;
 using Microsoft.AspNetCore.Components;
 
-namespace BUTR.NexusMods.Core.Extensions
+namespace BUTR.NexusMods.Blazor.Core.Extensions
 {
     public static class NavigationManagerMethods
     {

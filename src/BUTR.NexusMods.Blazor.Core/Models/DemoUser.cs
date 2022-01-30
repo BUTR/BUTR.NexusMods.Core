@@ -1,4 +1,6 @@
-﻿namespace BUTR.NexusMods.Core.Models
+﻿using BUTR.NexusMods.Shared.Models;
+
+namespace BUTR.NexusMods.Blazor.Core.Models
 {
     internal readonly struct DemoUserState
     {

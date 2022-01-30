@@ -1,4 +1,4 @@
-﻿namespace BUTR.CrashReportViewer.Client.Models
+﻿namespace BUTR.NexusMods.Blazor.Core.Models
 {
     public class PagingLink
     {

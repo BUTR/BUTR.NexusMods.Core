@@ -1,4 +1,5 @@
-﻿using BUTR.NexusMods.Core.Models;
+﻿using BUTR.NexusMods.Blazor.Core.Models;
+using BUTR.NexusMods.Shared.Models;
 
 using Microsoft.Extensions.Options;
 
@@ -6,7 +7,7 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.Json;
 
-namespace BUTR.NexusMods.Core.Services
+namespace BUTR.NexusMods.Blazor.Core.Services
 {
     public class DefaultNexusModsProvider : IAuthenticationProvider, IProfileProvider
     {

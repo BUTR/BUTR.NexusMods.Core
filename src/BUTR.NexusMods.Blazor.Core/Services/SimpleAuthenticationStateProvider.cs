@@ -1,10 +1,8 @@
-﻿using BUTR.NexusMods.Core.Models;
-
+﻿using System.Security.Claims;
+using BUTR.NexusMods.Blazor.Core.Models;
 using Microsoft.AspNetCore.Components.Authorization;
 
-using System.Security.Claims;
-
-namespace BUTR.NexusMods.Core.Services
+namespace BUTR.NexusMods.Blazor.Core.Services
 {
     public class SimpleAuthenticationStateProvider : AuthenticationStateProvider
     {

@@ -1,4 +1,4 @@
-﻿namespace BUTR.NexusMods.Core.Models
+﻿namespace BUTR.NexusMods.Blazor.Core.Models
 {
     public static class ApplicationRoles
     {
