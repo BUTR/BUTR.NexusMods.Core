@@ -1,4 +1,7 @@
-﻿@attribute [Authorize]
+﻿@using BUTR.NexusMods.Core.Services
+@using Microsoft.AspNetCore.Authorization
+
+@attribute [Authorize]
 @page "/logout"
 @inject NavigationManager _navigationManager
 @inject ITokenContainer _tokenContainer

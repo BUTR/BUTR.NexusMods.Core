@@ -1,4 +1,9 @@
-﻿@page "/login-nexusmods-token"
+﻿@using BUTR.NexusMods.Core.Extensions
+@using BUTR.NexusMods.Core.Models
+@using BUTR.NexusMods.Core.Services
+@using Microsoft.AspNetCore.Components
+
+@page "/login-nexusmods-token"
 @inject NavigationManager _navigationManager
 @inject ITokenContainer _tokenContainer
 @inject IAuthenticationProvider _authenticationProvider

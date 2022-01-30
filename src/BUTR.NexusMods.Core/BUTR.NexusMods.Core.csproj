@@ -4,16 +4,9 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Version>1.0.0</Version>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <PackageId>BUTR.NexusMods.Core</PackageId>
-    <PackageDescription></PackageDescription>
-    <Title>BUTR.NexusMods.Core</Title>
-    <Authors>BUTR</Authors>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    
+    <GITHUB_RUN_NUMBER Condition="$(GITHUB_RUN_NUMBER) == ''">0</GITHUB_RUN_NUMBER>
+    <Version>1.0.0.$(GITHUB_RUN_NUMBER)</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,6 +19,47 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+  </ItemGroup>
+
+  <!--NuGetizer-->
+  <PropertyGroup>
+    <PackageId>BUTR.NexusMods.Core</PackageId>
+    <PackageDescription></PackageDescription>
+    <Title>BUTR.NexusMods.Core</Title>
+    <Authors>BUTR</Authors>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+  <PropertyGroup>
+    <BuildProjectReferences>false</BuildProjectReferences>
+    <BuildOnPack>false</BuildOnPack>
+    <PackOnBuild>false</PackOnBuild>
+    <PackBuildOutput>false</PackBuildOutput>
+    <PackCompile>true</PackCompile>
+    <PackEmbeddedResource>true</PackEmbeddedResource>
+    <EnablePackCleanup>false</EnablePackCleanup>
+    <EnablePackInference>false</EnablePackInference>
+
+    <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)' == ''">obj</BaseIntermediateOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageFile Include="**/*.cs"
+                 PackagePath="content\cs\$(TargetFramework)\$(ProjectName)\%(RelativeDir)%(Filename).cs.pp"
+                 Exclude="$(BaseIntermediateOutputPath)/**/*.cs" />
+    <PackageFile Include="**/*.cs"
+                 PackagePath="contentFiles\cs\$(TargetFramework)\$(ProjectName)\%(RelativeDir)%(Filename).cs.pp"
+                 Exclude="$(BaseIntermediateOutputPath)/**/*.cs" />
+    <PackageFile Include="**/*.razor"
+                 PackagePath="content\cs\$(TargetFramework)\$(ProjectName)\%(RelativeDir)%(Filename).razor.pp"
+                 Exclude="$(BaseIntermediateOutputPath)/**/*.razor" />
+    <PackageFile Include="**/*.razor"
+                 PackagePath="contentFiles\cs\$(TargetFramework)\$(ProjectName)\%(RelativeDir)%(Filename).razor.pp"
+                 Exclude="$(BaseIntermediateOutputPath)/**/*.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NuGetizer" Version="0.7.5" />
   </ItemGroup>
 
 
