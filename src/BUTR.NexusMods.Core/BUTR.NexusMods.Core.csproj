@@ -45,16 +45,16 @@
 
   <ItemGroup>
     <PackageFile Include="**/*.cs"
-                 PackagePath="content\cs\$(TargetFramework)\$(ProjectName)\%(RelativeDir)%(Filename).cs"
+                 PackagePath="content\$(TargetFramework)\$(ProjectName)\%(RelativeDir)%(Filename).cs"
                  Exclude="$(BaseIntermediateOutputPath)/**/*.cs" />
     <PackageFile Include="**/*.cs"
-                 PackagePath="contentFiles\cs\$(TargetFramework)\$(ProjectName)\%(RelativeDir)%(Filename).cs"
+                 PackagePath="contentFiles\$(TargetFramework)\$(ProjectName)\%(RelativeDir)%(Filename).cs"
                  Exclude="$(BaseIntermediateOutputPath)/**/*.cs" />
     <PackageFile Include="**/*.razor"
-                 PackagePath="content\cs\$(TargetFramework)\$(ProjectName)\%(RelativeDir)%(Filename).razor"
+                 PackagePath="content\$(TargetFramework)\$(ProjectName)\%(RelativeDir)%(Filename).razor"
                  Exclude="$(BaseIntermediateOutputPath)/**/*.razor" />
     <PackageFile Include="**/*.razor"
-                 PackagePath="contentFiles\cs\$(TargetFramework)\$(ProjectName)\%(RelativeDir)%(Filename).razor"
+                 PackagePath="contentFiles\$(TargetFramework)\$(ProjectName)\%(RelativeDir)%(Filename).razor"
                  Exclude="$(BaseIntermediateOutputPath)/**/*.razor" />
   </ItemGroup>
 
