@@ -18,11 +18,11 @@
                         {
                             <a class="btn btn-secondary btn-lg text-uppercase" href="@AdministratorUrl" role="button">Administrator</a>
                         }
-                        @if (AdministratorLoginEnabled)
+                        @if (SSOLoginEnabled)
                         {
                             <a class="btn btn-nexusmods btn-lg text-uppercase" href="@NexusModsSSOUrl" role="button">Log In via NexusMods SSO</a>
                         }
-                        @if (AdministratorLoginEnabled)
+                        @if (RawTokenLoginEnabled)
                         {
                             <a class="btn btn-nexusmods btn-lg text-uppercase" href="@NexusModsTokenUrl" role="button">Log In via NexusMods Token</a>
                         }
