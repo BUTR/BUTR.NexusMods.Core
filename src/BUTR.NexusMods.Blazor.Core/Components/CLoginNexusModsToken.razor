@@ -10,9 +10,10 @@
                 <div class="card-body">
                     <EditForm Model="@_model" OnValidSubmit="@OnValidSubmit">
                         <DataAnnotationsValidator />
+                        <ValidationSummary />
                         <div class="mb-3">
                             <label for="inputNexusModsApiKey" class="form-label">NexusMods API Key</label>
-                            <input id="inputNexusModsApiKey" @bind-value="@_model.Input" type="password" required="" class="form-control border-0 shadow-sm px-4 text-primary" />
+                            <InputText id="inputNexusModsApiKey" @bind-Value="@_model.Input" type="password" required="" class="form-control border-0 shadow-sm px-4 text-primary" />
                         </div>
                         <button type="submit" class="btn btn-primary text-uppercase mb-2" disabled="@_isLoading">
                             @if (_isLoading)
