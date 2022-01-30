@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <GITHUB_RUN_NUMBER Condition="$(GITHUB_RUN_NUMBER) == ''">0</GITHUB_RUN_NUMBER>
+    <Version>1.0.0.$(GITHUB_RUN_NUMBER)</Version>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>BUTR.NexusMods.Server.Core</PackageId>
+    <PackageDescription></PackageDescription>
+    <Title>BUTR.NexusMods.Core</Title>
+    <Authors>BUTR</Authors>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.1" />
+    <PackageReference Include="Polly" Version="7.2.3" />
+    <PackageReference Include="RateLimiter" Version="2.2.0" />
+    <PackageReference Include="System.Linq.Async" Version="5.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BUTR.NexusMods.Shared\BUTR.NexusMods.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

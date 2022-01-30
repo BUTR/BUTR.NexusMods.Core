@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BUTR.NexusMods.Core", "BUTR.NexusMods.Core\BUTR.NexusMods.Core.csproj", "{9FCE9CF9-2675-443B-BA9A-544F4FCFECAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BUTR.NexusMods.Blazor.Core", "BUTR.NexusMods.Blazor.Core\BUTR.NexusMods.Blazor.Core.csproj", "{9FCE9CF9-2675-443B-BA9A-544F4FCFECAC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "root", "root", "{09065B42-FCF3-4AEB-A9A6-ABCCD6412712}"
 EndProject
@@ -15,6 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		..\.github\workflows\publish.yml = ..\.github\workflows\publish.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUTR.NexusMods.Server.Core", "BUTR.NexusMods.Server.Core\BUTR.NexusMods.Server.Core.csproj", "{42E9240D-9EC6-4CC2-8F16-653F48114E9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUTR.NexusMods.Shared", "BUTR.NexusMods.Shared\BUTR.NexusMods.Shared.csproj", "{CA9060CE-BECB-4A33-B46F-9D4FA20697CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +29,14 @@ Global
 		{9FCE9CF9-2675-443B-BA9A-544F4FCFECAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FCE9CF9-2675-443B-BA9A-544F4FCFECAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FCE9CF9-2675-443B-BA9A-544F4FCFECAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42E9240D-9EC6-4CC2-8F16-653F48114E9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42E9240D-9EC6-4CC2-8F16-653F48114E9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42E9240D-9EC6-4CC2-8F16-653F48114E9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42E9240D-9EC6-4CC2-8F16-653F48114E9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA9060CE-BECB-4A33-B46F-9D4FA20697CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA9060CE-BECB-4A33-B46F-9D4FA20697CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA9060CE-BECB-4A33-B46F-9D4FA20697CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA9060CE-BECB-4A33-B46F-9D4FA20697CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -33,6 +45,8 @@ Global
 		{9FCE9CF9-2675-443B-BA9A-544F4FCFECAC} = {3A60D0BE-E5F7-4ABD-B3EE-CA6F48CB1DC6}
 		{3A60D0BE-E5F7-4ABD-B3EE-CA6F48CB1DC6} = {09065B42-FCF3-4AEB-A9A6-ABCCD6412712}
 		{2EAC0EDA-E62D-4971-B95F-BFBB9CB062F3} = {09065B42-FCF3-4AEB-A9A6-ABCCD6412712}
+		{42E9240D-9EC6-4CC2-8F16-653F48114E9E} = {3A60D0BE-E5F7-4ABD-B3EE-CA6F48CB1DC6}
+		{CA9060CE-BECB-4A33-B46F-9D4FA20697CC} = {3A60D0BE-E5F7-4ABD-B3EE-CA6F48CB1DC6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7B19301B-6326-4DBD-AE76-53950ADB81E9}

@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>BUTR.NexusMods.Core</PackageId>
+    <PackageId>BUTR.NexusMods.Blazor.Core</PackageId>
     <PackageDescription></PackageDescription>
     <Title>BUTR.NexusMods.Core</Title>
     <Authors>BUTR</Authors>
@@ -50,6 +50,9 @@
   <!--SorceLink-->
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BUTR.NexusMods.Shared\BUTR.NexusMods.Shared.csproj" />
   </ItemGroup>
 
 </Project>
