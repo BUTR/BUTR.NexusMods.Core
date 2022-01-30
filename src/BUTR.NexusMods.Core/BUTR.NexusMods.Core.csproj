@@ -4,7 +4,9 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Version>1.0.0</Version>
+
+    <GITHUB_RUN_NUMBER Condition="$(GITHUB_RUN_NUMBER) == ''">0</GITHUB_RUN_NUMBER>
+    <Version>1.0.0.$(GITHUB_RUN_NUMBER)</Version>
   </PropertyGroup>
 
   <PropertyGroup>
