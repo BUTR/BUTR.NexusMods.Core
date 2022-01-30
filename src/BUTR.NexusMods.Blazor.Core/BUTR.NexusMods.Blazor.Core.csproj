@@ -30,6 +30,10 @@
     <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BUTR.NexusMods.Shared\BUTR.NexusMods.Shared.csproj" />
+  </ItemGroup>
+
 
   <!--GitHub Actions-->
   <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
@@ -50,9 +54,6 @@
   <!--SorceLink-->
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BUTR.NexusMods.Shared\BUTR.NexusMods.Shared.csproj" />
   </ItemGroup>
 
 </Project>
