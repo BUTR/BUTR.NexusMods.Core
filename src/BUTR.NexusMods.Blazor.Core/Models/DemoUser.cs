@@ -17,8 +17,6 @@ namespace BUTR.NexusMods.Blazor.Core.Models
 
     public class DemoUser
     {
-
-
         public static async Task<DemoUser> CreateAsync(IHttpClientFactory factory) => new(await DemoUserState.CreateAsync(factory));
 
 
