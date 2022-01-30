@@ -51,10 +51,10 @@
                  PackagePath="contentFiles\cs\$(TargetFramework)\$(ProjectName)\%(RelativeDir)%(Filename).cs.pp"
                  Exclude="$(BaseIntermediateOutputPath)/**/*.cs" />
     <PackageFile Include="**/*.razor"
-                 PackagePath="content\cs\$(TargetFramework)\$(ProjectName)\%(RelativeDir)%(Filename).razor.pp"
+                 PackagePath="content\razor\$(TargetFramework)\$(ProjectName)\%(RelativeDir)%(Filename).razor.pp"
                  Exclude="$(BaseIntermediateOutputPath)/**/*.razor" />
     <PackageFile Include="**/*.razor"
-                 PackagePath="contentFiles\cs\$(TargetFramework)\$(ProjectName)\%(RelativeDir)%(Filename).razor.pp"
+                 PackagePath="contentFiles\razor\$(TargetFramework)\$(ProjectName)\%(RelativeDir)%(Filename).razor.pp"
                  Exclude="$(BaseIntermediateOutputPath)/**/*.razor" />
   </ItemGroup>
 
