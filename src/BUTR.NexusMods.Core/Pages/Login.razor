@@ -1,0 +1,60 @@
+﻿@page "/login"
+@inject NavigationManager _navigationManager
+@inject ITokenContainer _tokenContainer
+@inject IAuthenticationProvider _authenticationProvider
+
+<!--https://jsfiddle.net/StartBootstrap/amxr8n19/-->
+<div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+            <div class="card-body">
+                <h5 class="card-title text-center">Sign In</h5>
+                <form class="form-signin">
+                    <hr class="my-4">
+                    <div class="d-grid gap-2">
+                        @if (DemoLoginEnabled)
+                        {
+                            <a class="btn btn-primary btn-lg text-uppercase" @onclick="OnDemoLogin" role="button">Demo</a>
+                        }
+                        @if (AdministratorLoginEnabled)
+                        {
+                            <a class="btn btn-secondary btn-lg text-uppercase" href="@AdministratorUrl" role="button">Administrator</a>
+                        }
+                        @if (AdministratorLoginEnabled)
+                        {
+                            <a class="btn btn-nexusmods btn-lg text-uppercase" href="@NexusModsSSOUrl" role="button">Log In via NexusMods SSO</a>
+                        }
+                        @if (AdministratorLoginEnabled)
+                        {
+                            <a class="btn btn-nexusmods btn-lg text-uppercase" href="@NexusModsTokenUrl" role="button">Log In via NexusMods Token</a>
+                        }
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public bool DemoLoginEnabled { get; set; } = true;
+    [Parameter]
+    public bool AdministratorLoginEnabled { get; set; } = true;
+    [Parameter]
+    public bool SSOLoginEnabled { get; set; } = true;
+    [Parameter]
+    public bool RawTokenLoginEnabled { get; set; } = true;
+
+    public string AdministratorUrl => $"login-administrator{new Uri(_navigationManager.Uri).Query}";
+    public string NexusModsSSOUrl => $"login-nexusmods-sso{new Uri(_navigationManager.Uri).Query}";
+    public string NexusModsTokenUrl => $"login-nexusmods-token{new Uri(_navigationManager.Uri).Query}";
+
+    private async void OnDemoLogin()
+    {
+        if (await _authenticationProvider.AuthenticateAsync("", "demo") is { } result)
+        {
+            await _tokenContainer.SetTokenAsync(result);
+            _navigationManager.NavigateTo(_navigationManager.QueryString("returnUrl") ?? "", true);
+        }
+    }
+}

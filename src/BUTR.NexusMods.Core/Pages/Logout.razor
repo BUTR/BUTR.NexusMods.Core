@@ -1,0 +1,12 @@
+﻿@attribute [Authorize]
+@page "/logout"
+@inject NavigationManager _navigationManager
+@inject ITokenContainer _tokenContainer
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await _tokenContainer.SetTokenAsync(null);
+        _navigationManager.NavigateTo("", true);
+    }
+}
