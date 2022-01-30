@@ -1,6 +1,8 @@
-﻿using System.Security.Claims;
-using BUTR.NexusMods.Blazor.Core.Models;
+﻿using BUTR.NexusMods.Shared.Helpers;
+
 using Microsoft.AspNetCore.Components.Authorization;
+
+using System.Security.Claims;
 
 namespace BUTR.NexusMods.Blazor.Core.Services
 {
