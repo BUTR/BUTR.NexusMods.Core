@@ -1,10 +1,4 @@
-﻿@using BUTR.NexusMods.Core.Extensions
-@using BUTR.NexusMods.Core.Models
-@using BUTR.NexusMods.Core.Services
-@using Microsoft.AspNetCore.Components
-
-@page "/login-administrator"
-@inject NavigationManager _navigationManager
+﻿@inject NavigationManager _navigationManager
 @inject ITokenContainer _tokenContainer
 @inject IAuthenticationProvider _authenticationProvider
 
@@ -13,13 +7,13 @@
     <div class="row">
         <div class="col-lg-10 col-xl-7 mx-auto">
             <div class="card">
-                <h4 class="card-header text-center">Administrator Log In</h4>
+                <h4 class="card-header text-center">NexusMods Log In</h4>
                 <div class="card-body">
                     <EditForm Model="@_model" OnValidSubmit="OnValidSubmit">
                         <DataAnnotationsValidator />
                         <div class="mb-3">
-                            <label for="inputToken" class="form-label">Administrator Token</label>
-                            <InputText id="inputToken" @bind="_model.Input" type="password" required="" class="form-control border-0 shadow-sm px-4 text-primary" />
+                            <label for="inputNexusModsApiKey" class="form-label">NexusMods API Key</label>
+                            <InputText id="inputNexusModsApiKey" @bind="_model.Input" type="password" required="" class="form-control border-0 shadow-sm px-4 text-primary" />
                         </div>
                         <button type="submit" class="btn btn-primary text-uppercase mb-2" disabled="@_isLoading">
                             @if (_isLoading)
@@ -41,11 +35,14 @@
 
     private async void OnValidSubmit()
     {
+        if (string.Equals(_model.Input, "demo", StringComparison.OrdinalIgnoreCase))
+            return;
+
         _isLoading = true;
 
         try
         {
-            if (await _authenticationProvider.AuthenticateAsync(_model.Input, "admin") is not { } result)
+            if (await _authenticationProvider.AuthenticateAsync(_model.Input) is not { } result)
             {
                 _isLoading = false;
                 StateHasChanged();

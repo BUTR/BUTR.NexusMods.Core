@@ -1,10 +1,4 @@
-﻿@using BUTR.NexusMods.Core.Models
-@using BUTR.NexusMods.Core.Services
-@using Microsoft.AspNetCore.Authorization
-
-@attribute [Authorize]
-@page "/profile"
-@inject NavigationManager _navigationManager
+﻿@inject NavigationManager _navigationManager
 @inject IProfileProvider _profileProvider
 
 @if (_user is null)

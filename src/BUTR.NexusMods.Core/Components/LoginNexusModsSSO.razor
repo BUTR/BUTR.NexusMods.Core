@@ -1,15 +1,4 @@
-﻿@using System.Net.WebSockets
-@using System.Text
-@using System.Text.Json
-@using System.Text.Json.Serialization
-@using Blazored.SessionStorage
-@using BUTR.NexusMods.Core.Extensions
-@using BUTR.NexusMods.Core.Services
-@using Microsoft.Extensions.Options
-@using Microsoft.JSInterop
-
-@page "/login-nexusmods-sso"
-@inject NavigationManager _navigationManager
+﻿@inject NavigationManager _navigationManager
 @inject IJSRuntime _jsRuntime;
 @inject ISessionStorageService _sessionStorage
 @inject ITokenContainer _tokenContainer
