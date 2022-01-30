@@ -24,12 +24,26 @@ namespace BUTR.NexusMods.Core.Services
 
         public async Task SetTokenAsync(string? token, CancellationToken ct = default)
         {
-            await _localStorage.SetItemAsStringAsync("token", token, ct);
+            if (token is null)
+            {
+                await _localStorage.RemoveItemAsync("token");
+            }
+            else
+            {
+                await _localStorage.SetItemAsStringAsync("token", token, ct);
+            }
         }
 
         public async Task SetTokenTypeAsync(string? tokenType, CancellationToken ct = default)
         {
-            await _localStorage.SetItemAsStringAsync("token_type", tokenType, ct);
+            if (tokenType is null)
+            {
+                await _localStorage.RemoveItemAsync("token_type");
+            }
+            else
+            {
+                await _localStorage.SetItemAsStringAsync("token_type", tokenType, ct);
+            }
         }
     }
 }
