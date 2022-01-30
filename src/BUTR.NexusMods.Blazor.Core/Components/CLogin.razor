@@ -1,6 +1,4 @@
-﻿@using BUTR.NexusMods.Blazor.Core.Services
-@using BUTR.NexusMods.Blazor.Core.Extensions
-@inject NavigationManager _navigationManager
+﻿@inject NavigationManager _navigationManager
 @inject IAuthenticationProvider _authenticationProvider
 
 <!--https://jsfiddle.net/StartBootstrap/amxr8n19/-->
@@ -14,7 +12,7 @@
                     <div class="d-grid gap-2">
                         @if (DemoLoginEnabled)
                         {
-                            <a class="btn btn-primary btn-lg text-uppercase" @onclick="OnDemoLogin" role="button">Demo</a>
+                            <a class="btn btn-primary btn-lg text-uppercase" @onclick="@OnDemoLogin" role="button">Demo</a>
                         }
                         @if (AdministratorLoginEnabled)
                         {

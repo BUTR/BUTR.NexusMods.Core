@@ -1,6 +1,4 @@
-﻿@using BUTR.NexusMods.Blazor.Core.Services
-@using BUTR.NexusMods.Blazor.Core.Extensions
-@inject NavigationManager _navigationManager
+﻿@inject NavigationManager _navigationManager
 @inject IJSRuntime _jsRuntime;
 @inject ISessionStorageService _sessionStorage
 @inject IAuthenticationProvider _authenticationProvider
@@ -15,14 +13,14 @@
                 <div class="card-body">
                     @if (_url is null)
                     {
-                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="@true"></span>
                     }
                     else
                     {
-                        <button type="submit" class="btn btn-primary text-uppercase mb-2" @onclick="OpenUrl">
+                        <button type="submit" class="btn btn-primary text-uppercase mb-2" @onclick="@OpenUrl">
                             @if (_url is null)
                             {
-                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="@true"></span>
                             }
                             Open NexusMods For Authorization
                         </button>

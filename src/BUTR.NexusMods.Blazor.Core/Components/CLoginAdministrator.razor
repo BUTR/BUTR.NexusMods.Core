@@ -1,7 +1,4 @@
-﻿@using BUTR.NexusMods.Blazor.Core.Services
-@using BUTR.NexusMods.Blazor.Core.Models
-@using BUTR.NexusMods.Blazor.Core.Extensions
-@inject NavigationManager _navigationManager
+﻿@inject NavigationManager _navigationManager
 @inject IAuthenticationProvider _authenticationProvider
 
 <!--https://jsfiddle.net/bootstrapious/j80aheo9/-->
@@ -11,7 +8,7 @@
             <div class="card">
                 <h4 class="card-header text-center">Administrator Log In</h4>
                 <div class="card-body">
-                    <EditForm Model="@_model" OnValidSubmit="OnValidSubmit">
+                    <EditForm Model="@_model" OnValidSubmit="@OnValidSubmit">
                         <DataAnnotationsValidator />
                         <div class="mb-3">
                             <label for="inputToken" class="form-label">Administrator Token</label>
@@ -20,7 +17,7 @@
                         <button type="submit" class="btn btn-primary text-uppercase mb-2" disabled="@_isLoading">
                             @if (_isLoading)
                             {
-                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="@true"></span>
                             }
                             Login
                         </button>
