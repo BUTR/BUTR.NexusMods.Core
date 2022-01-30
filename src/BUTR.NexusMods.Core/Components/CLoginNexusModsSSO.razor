@@ -1,7 +1,6 @@
 ﻿@inject NavigationManager _navigationManager
 @inject IJSRuntime _jsRuntime;
 @inject ISessionStorageService _sessionStorage
-@inject ITokenContainer _tokenContainer
 @inject IAuthenticationProvider _authenticationProvider
 @inject IOptions<JsonSerializerOptions> _jsonSerializerOptions
 
@@ -103,7 +102,6 @@
                             }
                             else
                             {
-                                await _tokenContainer.SetTokenAsync(result);
                                 _navigationManager.NavigateTo(_navigationManager.QueryString("returnUrl") ?? "", true);
                             }
                         }

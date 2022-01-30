@@ -1,8 +1,10 @@
-﻿using System.Net.Http.Headers;
+﻿using BUTR.NexusMods.Core.Models;
+
+using Microsoft.Extensions.Options;
+
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.Json;
-using BUTR.NexusMods.Core.Models;
-using Microsoft.Extensions.Options;
 
 namespace BUTR.NexusMods.Core.Services
 {
@@ -14,9 +16,6 @@ namespace BUTR.NexusMods.Core.Services
         private readonly ITokenContainer _tokenContainer;
         private readonly JsonSerializerOptions _jsonSerializerOptions;
 
-        private DemoUser? _demoUser;
-        private string? _type;
-
         public DefaultNexusModsProvider(IHttpClientFactory httpClientFactory, ITokenContainer tokenContainer, IOptions<JsonSerializerOptions> jsonSerializerOptions)
         {
             _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
@@ -26,11 +25,10 @@ namespace BUTR.NexusMods.Core.Services
 
         public async Task<string?> AuthenticateAsync(string apiKey, string? type = null, CancellationToken ct = default)
         {
-            _type = type;
+            await _tokenContainer.SetTokenTypeAsync(type, ct);
 
             if (type?.Equals("demo", StringComparison.OrdinalIgnoreCase) == true)
             {
-                _demoUser = await DemoUser.CreateAsync(_httpClientFactory);
                 return "";
             }
 
@@ -41,21 +39,30 @@ namespace BUTR.NexusMods.Core.Services
                 request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 var httpClient = _httpClientFactory.CreateClient("Backend");
                 var response = await httpClient.SendAsync(request, ct);
-                return response.IsSuccessStatusCode ? (await response.Content.ReadFromJsonAsync<JwtTokenResponse>(_jsonSerializerOptions, ct))?.Token : null;
+                if (response.IsSuccessStatusCode && await response.Content.ReadFromJsonAsync<JwtTokenResponse>(_jsonSerializerOptions, ct) is { } json)
+                {
+                    await _tokenContainer.SetTokenAsync(json.Token, ct);
+                    return json.Token;
+                }
+                else
+                    return null;
             }
             catch (Exception)
             {
-                _type = null;
+                await _tokenContainer.SetTokenTypeAsync(null, ct);
                 return null;
             }
         }
 
-        public async Task<bool> ValidateAsync(string? token, CancellationToken ct = default)
+        public async Task<bool> ValidateAsync(CancellationToken ct = default)
         {
-            if (_type?.Equals("demo", StringComparison.OrdinalIgnoreCase) == true)
+            var tokenType = await _tokenContainer.GetTokenTypeAsync(ct);
+            if (tokenType?.Equals("demo", StringComparison.OrdinalIgnoreCase) == true)
             {
                 return true;
             }
+
+            var token = await _tokenContainer.GetTokenAsync(ct);
             if (token is null)
             {
                 return false;
@@ -76,11 +83,19 @@ namespace BUTR.NexusMods.Core.Services
             }
         }
 
+        public async Task Deauthenticate(CancellationToken ct = default)
+        {
+            await _tokenContainer.SetTokenAsync(null, ct);
+            await _tokenContainer.SetTokenTypeAsync(null, ct);
+        }
+
         public async Task<ProfileModel?> GetProfileAsync(CancellationToken ct = default)
         {
-            if (_type?.Equals("demo", StringComparison.OrdinalIgnoreCase) == true)
+            var tokenType = await _tokenContainer.GetTokenTypeAsync(ct);
+            if (tokenType?.Equals("demo", StringComparison.OrdinalIgnoreCase) == true)
             {
-                return _demoUser!.Profile;
+                var demoUser = await DemoUser.CreateAsync(_httpClientFactory);
+                return demoUser.Profile;
             }
 
             var token = await _tokenContainer.GetTokenAsync(ct);

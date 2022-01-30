@@ -1,5 +1,4 @@
 ﻿@inject NavigationManager _navigationManager
-@inject ITokenContainer _tokenContainer
 @inject IAuthenticationProvider _authenticationProvider
 
 <!--https://jsfiddle.net/bootstrapious/j80aheo9/-->
@@ -13,7 +12,7 @@
                         <DataAnnotationsValidator />
                         <div class="mb-3">
                             <label for="inputNexusModsApiKey" class="form-label">NexusMods API Key</label>
-                            <InputText id="inputNexusModsApiKey" @bind="_model.Input" type="password" required="" class="form-control border-0 shadow-sm px-4 text-primary" />
+                            <input id="inputNexusModsApiKey" @bind-value="@_model.Input" type="password" required="" class="form-control border-0 shadow-sm px-4 text-primary" />
                         </div>
                         <button type="submit" class="btn btn-primary text-uppercase mb-2" disabled="@_isLoading">
                             @if (_isLoading)
@@ -49,7 +48,6 @@
             }
             else
             {
-                await _tokenContainer.SetTokenAsync(result);
                 _navigationManager.NavigateTo(_navigationManager.QueryString("returnUrl") ?? "", true);
             }
         }

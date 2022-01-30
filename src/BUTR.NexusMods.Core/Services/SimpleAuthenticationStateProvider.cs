@@ -1,6 +1,8 @@
-﻿using System.Security.Claims;
-using BUTR.NexusMods.Core.Models;
+﻿using BUTR.NexusMods.Core.Models;
+
 using Microsoft.AspNetCore.Components.Authorization;
+
+using System.Security.Claims;
 
 namespace BUTR.NexusMods.Core.Services
 {
@@ -11,23 +13,17 @@ namespace BUTR.NexusMods.Core.Services
         private readonly ClaimsPrincipal _administrator = new(new ClaimsIdentity(new[] { new Claim(ClaimTypes.Role, ApplicationRoles.Administrator) }, "Standard"));
 
         private readonly IAuthenticationProvider _authenticationProvider;
-        private readonly ITokenContainer _tokenContainer;
         private readonly IProfileProvider _profileProvider;
 
-        public SimpleAuthenticationStateProvider(IAuthenticationProvider authenticationProvider, ITokenContainer tokenContainer, IProfileProvider profileProvider)
+        public SimpleAuthenticationStateProvider(IAuthenticationProvider authenticationProvider, IProfileProvider profileProvider)
         {
             _authenticationProvider = authenticationProvider ?? throw new ArgumentNullException(nameof(authenticationProvider));
-            _tokenContainer = tokenContainer ?? throw new ArgumentNullException(nameof(tokenContainer));
             _profileProvider = profileProvider ?? throw new ArgumentNullException(nameof(profileProvider));
         }
 
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
-            var token = await _tokenContainer.GetTokenAsync();
-            if (token is null)
-                return new AuthenticationState(_anonymous);
-
-            if (!await _authenticationProvider.ValidateAsync(token))
+            if (!await _authenticationProvider.ValidateAsync())
                 return new AuthenticationState(_anonymous);
 
             if (await _profileProvider.GetProfileAsync() is { UserId: -1 })

@@ -1,5 +1,4 @@
 ﻿@inject NavigationManager _navigationManager
-@inject ITokenContainer _tokenContainer
 @inject IAuthenticationProvider _authenticationProvider
 
 <!--https://jsfiddle.net/StartBootstrap/amxr8n19/-->
@@ -52,7 +51,6 @@
     {
         if (await _authenticationProvider.AuthenticateAsync("", "demo") is { } result)
         {
-            await _tokenContainer.SetTokenAsync(result);
             _navigationManager.NavigateTo(_navigationManager.QueryString("returnUrl") ?? "", true);
         }
     }
