@@ -45,7 +45,7 @@ namespace BUTR.NexusMods.Server.Core.Controllers
         public async Task<ActionResult> Authenticate([FromHeader] string? apiKey, [FromQuery] string? type)
         {
             if (apiKey is null)
-                return StatusCode((int) HttpStatusCode.BadRequest, new StandardResponse("API Key not found!"));
+                return StatusCode((int)HttpStatusCode.BadRequest, new StandardResponse("API Key not found!"));
 
             if (type?.Equals("admin", StringComparison.OrdinalIgnoreCase) == true)
             {
@@ -59,11 +59,11 @@ namespace BUTR.NexusMods.Server.Core.Controllers
                     })));
                 }
 
-                return StatusCode((int) HttpStatusCode.Unauthorized, new StandardResponse("Invalid Administrator Token!"));
+                return StatusCode((int)HttpStatusCode.Unauthorized, new StandardResponse("Invalid Administrator Token!"));
             }
 
             if (await _nexusModsAPIClient.ValidateAPIKey(apiKey) is not { } validateResponse)
-                return StatusCode((int) HttpStatusCode.Unauthorized, new StandardResponse("Invalid NexusMods API Key!"));
+                return StatusCode((int)HttpStatusCode.Unauthorized, new StandardResponse("Invalid NexusMods API Key!"));
 
             return Ok(new JwtTokenResponse(GenerateJsonWebToken(validateResponse)));
         }
@@ -75,10 +75,10 @@ namespace BUTR.NexusMods.Server.Core.Controllers
                 return Ok();
 
             if (!HttpContext.User.HasClaim(c => c.Type == "nmapikey") || HttpContext.User.Claims.FirstOrDefault(c => c.Type == "nmapikey") is not { } apiKeyClaim)
-                return StatusCode((int) HttpStatusCode.BadRequest, new StandardResponse("Invalid Bearer!"));
+                return StatusCode((int)HttpStatusCode.BadRequest, new StandardResponse("Invalid Bearer!"));
 
             if (await _nexusModsAPIClient.ValidateAPIKey(apiKeyClaim.Value) is null)
-                return StatusCode((int) HttpStatusCode.Unauthorized, new StandardResponse("Invalid NexusMods API Key from Bearer!"));
+                return StatusCode((int)HttpStatusCode.Unauthorized, new StandardResponse("Invalid NexusMods API Key from Bearer!"));
 
             return Ok();
         }
@@ -90,10 +90,10 @@ namespace BUTR.NexusMods.Server.Core.Controllers
                 return Ok(Administrator);
 
             if (!HttpContext.User.HasClaim(c => c.Type == "nmapikey") || HttpContext.User.Claims.FirstOrDefault(c => c.Type == "nmapikey") is not { } apiKeyClaim)
-                return StatusCode((int) HttpStatusCode.BadRequest, new StandardResponse("Invalid Bearer!"));
+                return StatusCode((int)HttpStatusCode.BadRequest, new StandardResponse("Invalid Bearer!"));
 
             if (await _nexusModsAPIClient.ValidateAPIKey(apiKeyClaim.Value) is not { } vr)
-                return StatusCode((int) HttpStatusCode.Unauthorized, new StandardResponse("Invalid NexusMods API Key from Bearer!"));
+                return StatusCode((int)HttpStatusCode.Unauthorized, new StandardResponse("Invalid NexusMods API Key from Bearer!"));
 
             return Ok(new ProfileModel(vr.UserId, vr.Name, vr.Email, vr.ProfileUrl, vr.IsPremium, vr.IsSupporter));
         }
